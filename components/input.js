@@ -1,6 +1,7 @@
 var
-  inquirer = require('inquirer'),
-  _ = require('lodash');
+  _ = require('lodash'),
+  inquirer = require('inquirer');
+
 module.exports.ask = function (message, _default) {
   return inquirer.prompt([{
     name: 'response',

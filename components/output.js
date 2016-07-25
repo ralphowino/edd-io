@@ -6,8 +6,7 @@ module.exports.line = function () {
   _.each(arguments, function (message) {
     console.log(message);
   });
-}
-
+};
 
 module.exports.info = function () {
   _.each(arguments, function (message) {

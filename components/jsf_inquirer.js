@@ -5,15 +5,23 @@ var
 	inquirer = require('inquirer'),
 	q = require('q');
 
-function loopQuestions(questions_array) {
-	var promises =[];
+function loopQuestions(questions_array, index, answers) {
+	if (!index) {
+		index = 0;
+	}
 
-	_.forEach(questions_array,function (question) {
-		promises.push(inquirer.prompt(question));
-	});
+	if (!answers) {
+		answers = {}
+	}
 
-	return q.all(promises).then(function (answer) {
-		return answer;
+	return inquirer.prompt(questions_array[index]).then(function (answer) {
+		Object.assign(answers, answer);
+
+		if (index === questions_array.length - 1) {
+			return answers;
+		} else {
+			return loopQuestions(questions_array, index+1, answers)
+		}
 	});
 }
 

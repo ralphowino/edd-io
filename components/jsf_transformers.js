@@ -1,26 +1,25 @@
+// 'use strict';
+
 var
 	_ = require('lodash'),
-	chalk = require('chalk'),
-	input = require('./input'), //TODO:: input should be dependent of tranformers and not the other way round
 	inquirer = require('inquirer'),
 	transformers = {};
 
-transformers.transformArrayField = function (field, answers) {
-	if (!answers) answers = [];
-	return input.choose(field.title + '. What do we do next', [{value: 'add', name: 'Add'}, {
-		value: 'skip',
-		name: 'Skip'
-	}]).then(function (selected) {
-		if (selected == 'skip')
-			return answers;
-		var items = _.map(field.items, function (item) {
-			return item.replace(field.key.concat('[].'), '');
-		});
-		return input.fields(field.schema.items, items).then(function (answer) {
-			answers.push(answer);
-			return input.askArrayQuestion(field, answers)
-		})
-	});
+transformers.transformArrayField = function (field) {
+	// return input.choose(field.title + '. What do we do next', [
+	// 	{	value: 'add',  name: 'Add'},
+	// 	{	value: 'stop', name: 'Stop'}
+	// ]).then(function ( selected ) {
+	// 	if (selected == 'stop')
+	// 		return answers;
+	// 	var items = _.map(field.items, function (item) {
+	// 		return item.replace(field.key.concat('[].'), '');
+	// 	});
+	// 	return input.fields(field.schema.items, items).then(function (answer) {
+	// 		answers.push(answer);
+	// 		return input.askArrayQuestion(field, answers)
+	// 	})
+	// });
 };
 
 transformers.transformBooleanField = function (field) {
@@ -31,6 +30,15 @@ transformers.transformBooleanField = function (field) {
 	}
 };
 
+// transformers.transformCheckboxField = function (field) {
+// 	return {
+// 		name: field.key,
+// 		message: field.title ? field.title : field.key,
+// 		choices: choices,
+// 		default: _default
+// 	}
+// };
+
 transformers.transformDefaultField = function (field, answer) {
 	return {
 		name: field.key,
@@ -38,6 +46,11 @@ transformers.transformDefaultField = function (field, answer) {
 		type: 'input',
 		default: _.isUndefined(answer) ? field.default : answer
 	}
+};
+
+transformers.transformHelpField = function (field, answer) {
+	console.log('no transform available for help text');
+	return null;
 };
 
 transformers.transformIntegerField = function (field, answer) {
@@ -80,7 +93,7 @@ transformers.transformTextareaField = function (field, answer) {
 	return {
 		name: field.key,
 		message: field.title ? field.title : field.key,
-		type: 'editor',
+		type: 'input',
 		default: _.isUndefined(answer) ? field.default : answer
 	}
 };

@@ -1,14 +1,14 @@
 {
-  "name": "eddie-io",
+  "name": "edd-io",
   "version": "0.0.1",
-  "description": "input output manager for eddie",
+  "description": "input output manager for edd",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ralphowino/eddie-io.git"
+    "url": "git+https://github.com/ralphowino/edd-io.git"
   },
   "keywords": [
     "open source"
@@ -25,7 +25,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ralphowino/eddie-io/issues"
+    "url": "https://github.com/ralphowino/edd-io/issues"
   },
-  "homepage": "https://github.com/ralphowino/eddie-io#readme"
+  "homepage": "https://github.com/ralphowino/edd-io#readme"
 }

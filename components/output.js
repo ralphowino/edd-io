@@ -1,33 +1,46 @@
+'use strict';
 var
   chalk = require('chalk'),
+  Spinner = require('cli-spinner').Spinner,
   _ = require('lodash');
 
-module.exports.line = function () {
-  _.each(arguments, function (message) {
-    console.log(message);
-  });
-};
+class Output {
+  line() {
+    _.each(arguments, (message)=> {
+      console.log(message);
+    });
+  };
 
-module.exports.info = function () {
-  _.each(arguments, function (message) {
-    console.info(chalk.cyan(message));
-  });
-};
+  info() {
+    _.each(arguments, (message)=> {
+      console.info(chalk.cyan(message));
+    });
+  };
 
-module.exports.success = function () {
-  _.each(arguments, function (message) {
-    console.info(chalk.green(message));
-  });
-};
+  success() {
+    _.each(arguments, (message)=> {
+      console.info(chalk.green(message));
+    });
+  };
 
-module.exports.error = function () {
-  _.each(arguments, function (message) {
-    console.error(chalk.white.bgRed(message));
-  });
-};
+  error() {
+    _.each(arguments, (message)=> {
+      console.error(chalk.white.bgRed(message));
+    });
+  };
 
-module.exports.warning = function () {
-  _.each(arguments, function (message) {
-    console.warn(chalk.yellow(message));
-  });
-};
+  warning() {
+    _.each(arguments, (message)=> {
+      console.warn(chalk.yellow(message));
+    });
+  };
+
+  spinner (message){
+    let spinner = new Spinner(message+'...%s');
+    spinner.setSpinnerString('|/-\\');
+    return spinner;
+  }
+}
+
+
+module.exports = Output;

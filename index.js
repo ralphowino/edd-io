@@ -1,15 +1,10 @@
-var _ = require('lodash'),
-  input = require('./components/input'),
-  Output = require('./components/output'),
-  jsf = require('./components/jsf');
+export {Fields} from './components/fields';
+export {Input} from './components/input';
+export {Output} from './components/output';
 
-function init() {
+export function init() {
 
 }
-
-module.exports = _.merge(input, jsf, {init: init});
-
-module.exports.output = new Output;
 
 
 

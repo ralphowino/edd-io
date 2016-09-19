@@ -1,10 +1,9 @@
-'use strict';
 var
   chalk = require('chalk'),
   Spinner = require('cli-spinner').Spinner,
   _ = require('lodash');
 
-class Output {
+class ClassOutput {
   line() {
     _.each(arguments, (message)=> {
       if (!_.isString(message)) {
@@ -12,7 +11,7 @@ class Output {
       }
       console.log(message);
     });
-  };
+  }
 
   info() {
     _.each(arguments, (message)=> {
@@ -21,7 +20,7 @@ class Output {
       }
       console.info(chalk.cyan(message));
     });
-  };
+  }
 
   success() {
     _.each(arguments, (message)=> {
@@ -30,7 +29,7 @@ class Output {
       }
       console.info(chalk.green(message));
     });
-  };
+  }
 
   error() {
     _.each(arguments, (message)=> {
@@ -39,7 +38,7 @@ class Output {
       }
       console.error(chalk.white.bgRed(message));
     });
-  };
+  }
 
   warning() {
     _.each(arguments, (message)=> {
@@ -47,8 +46,8 @@ class Output {
         message = JSON.stringify(message);
       }
       console.warn(chalk.yellow(message));
-    });
-  };
+    })
+  }
 
   spinner(message) {
     let spinner = new Spinner(message + '...%s');
@@ -56,6 +55,4 @@ class Output {
     return spinner;
   }
 }
-
-
-module.exports = Output;
+export let Output = new ClassOutput();
